@@ -5,7 +5,7 @@ const Footer = () => {
     <div>
       <footer class='footer footer-credits'>
         <div class='container'>
-          <span class='text-muted'>&copy; App by Koushith</span>
+          <span class=''>&copy; 2020 | App by Koushith</span>
         </div>
       </footer>
     </div>
