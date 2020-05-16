@@ -1,86 +1,32 @@
-// import React from 'react';
-// import axios from 'axios';
-// import './App.css';
-
-// class App extends React.Component {
-//   state = { advice: '' };
-
-//   componentDidMount() {
-//     this.fetchAdvice();
-//   }
-//   fetchAdvice = () => {
-//     axios
-//       .get('https://api.adviceslip.com/advice')
-//       .then((response) => {
-//         // destructure the data
-//         const { advice } = response.data.slip;
-//         // console.log(advice);
-//         // put this into state , to access in render. i.e render out
-//         this.setState({ advice: advice });
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//       });
-//   };
-
-//   render() {
-//     const { advice } = this.state;
-//     return (
-//       <div className='app'>
-//         <div className='card'>
-//           <h1 className='heading'>{advice}</h1>
-//           <button className='button' onClick={this.fetchAdvice}>
-//             <span>GIVE ME ADVICE</span>
-//           </button>
-//         </div>
-//       </div>
-//     );
-//   }
-// }
-// export default App;
-
-import React from 'react';
-import axios from 'axios';
-
+import React, { useState, useEffect } from 'react';
+import Axios from 'axios';
+import Advice from './components/Advice';
 import './App.css';
 
-class App extends React.Component {
-  state = {
-    advice: '',
+const App = () => {
+  const [advices, setAdvices] = useState([]);
+  const fetchAdvice = async () => {
+    const res = await Axios.get('https://api.adviceslip.com/advice');
+    console.log('RESPONSE: ', res.data.slip.advice);
+
+    const ad = res.data.slip.advice;
+
+    setAdvices(ad);
   };
-
-  componentDidMount() {
-    this.fetchAdvice();
-  }
-
-  fetchAdvice = () => {
-    axios
-      .get('https://api.adviceslip.com/advice')
-      .then((response) => {
-        const { advice } = response.data.slip;
-
-        this.setState({ advice });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  render() {
-    return (
-      <div className='container-fluid  app'>
-        <div className='card p-4'>
-          <h1 className='heading'>{this.state.advice}</h1>
-          <button
-            className='btn btn-primary mt-3 button'
-            onClick={this.fetchAdvice}
-          >
-            <span>GIVE ME ADVICE!</span>
-          </button>
-        </div>
+  // load before hitting button
+  useEffect(() => {
+    fetchAdvice();
+  }, []);
+  return (
+    <div className='container-fluid app'>
+      <div className='card p-4'>
+        <Advice advices={advices} />
+        <button className='btn btn-primary mt-3 button' onClick={fetchAdvice}>
+          GIVE ME MORE ADVICE!!
+        </button>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default App;
