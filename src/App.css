@@ -17,6 +17,7 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
+  flex-direction: column;
 }
 
 .button {
@@ -33,6 +34,12 @@ body {
 .button:hover span {
   animation: storm 0.7s ease-in-out both;
   animation-delay: 0.06s;
+}
+
+.footer-credits {
+  display: block;
+
+  padding-top: 60px;
 }
 
 @keyframes rotate {
