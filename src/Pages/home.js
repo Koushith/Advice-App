@@ -6,14 +6,22 @@ const Home = () => {
   return (
     <Router>
       <div>
-        <ul>
-          <li>
-            <Link to='/Joke'>Joke</Link>
-          </li>
-          <li>
-            <Link to='/Advice'>Advice</Link>
-          </li>
-        </ul>
+        <div className='row'>
+          <div className='col'>
+            <div class='card' style={{ width: '18rem' }}>
+              <div class='card-body'>
+                <Link to='/Advice'>Advice</Link>
+              </div>
+            </div>
+          </div>
+          <div className='col'>
+            <div class='card' style={{ width: '18rem' }}>
+              <div class='card-body'>
+                <Link to='/Joke'>Joke</Link>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <hr />
 
